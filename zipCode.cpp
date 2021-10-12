@@ -1,14 +1,14 @@
 //----------------------------------------------------------------
 // zipCode.cpp
 // Implementation file
-// Author: Myint Aung
+// Author: Myint Aung, Jordan Hebler
 //----------------------------------------------------------------
 // This .cpp file implements the functions of the class zipCode
 //
 // This file make uses of the functions of the class zipcode
 // which includes the functions that will set the values of
-// zipcode, state, latitude and longitude and as well as functions
-// to get those values after they are set
+// zipcode, placename, state, county, latitude and longitude and
+// as well as functions to get those values after they are set
 //----------------------------------------------------------------
 
 #include <string>
@@ -19,6 +19,7 @@
  * @brief This is the implementation file for the zipCode record class
  *
  * @author Myint Aung
+ * @author Jordan Hebler
  */
 
 
@@ -27,11 +28,13 @@
 // @param None
 // @return None
 // @pre None
-// @post This is a constructor that sets valid values to zipcode, state, longitude and latitude
+// @post This is a constructor that sets valid values to zipcode, placename, state, county, longitude and latitude
 zipCode::zipCode()
 {
     zipcode= 0;
+    placename = "";
     state = "";
+    county = "";
     latitude = 0;
     longitude = 0;
 }
@@ -47,6 +50,16 @@ const int zipCode::getZip(){
     return zipcode;
 }
 
+// accessor for placename in file zipcode
+//
+// @param None
+// @return This function returns the placename
+// @pre None
+// @post This function returns the placename
+const std::string zipCode::getPlacename(){
+    return placename;
+}
+
 // accessor for state in file zipcode
 //
 // @param None
@@ -55,6 +68,16 @@ const int zipCode::getZip(){
 // @post This function returns the state
 const std::string zipCode::getState(){
     return state;
+}
+
+// accessor for county in file zipcode
+//
+// @param None
+// @return This function returns the county
+// @pre None
+// @post This function returns the county
+const std::string zipCode::getCounty(){
+    return county;
 }
 
 
@@ -89,6 +112,16 @@ void zipCode::setZip(int Zipcode){
     zipcode = Zipcode;
 }
 
+// Mutator for the placename
+//
+// @param String This function takes a string value called Placename as parameter to set the value of placename
+// @return None
+// @pre None
+// @post This function sets the value of placename
+void zipCode::setState(std::string Placename){
+    placename = Placename;
+}
+
 // Mutator for the state
 //
 // @param String This function takes a string value called State as parameter to set the value of state
@@ -97,6 +130,16 @@ void zipCode::setZip(int Zipcode){
 // @post This function sets the value of state
 void zipCode::setState(std::string State){
     state = State;
+}
+
+// Mutator for the county
+//
+// @param String This function takes a string value called County as parameter to set the value of county
+// @return None
+// @pre None
+// @post This function sets the value of county
+void zipCode::setState(std::string County){
+    county = County;
 }
 
 // Mutator for latitude
