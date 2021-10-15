@@ -36,7 +36,7 @@ class LIbuffer
  * @pre None
  * @post The object is created with the delimiter character passed in
 */
-LIBuffer(char c);
+LIbuffer(char c);
  
 /**
  * This packs the fields vector with the data members from a zipCode record
