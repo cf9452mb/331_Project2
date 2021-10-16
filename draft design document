@@ -1,0 +1,8 @@
+csv buffer - from project 1
+record object/zipcode - already done from project 1
+LI Buffer - Reading from an object (Zip Code), taking all of its contents, 
+inside the buffer is going to be counting of each legnth of data field.
+LI File  - Put the information of created from buffer and put it into this file
+Data Header Object - getters and setters for the ones listed in header record architecutre.
+Data Header Buffer - Read the header then unpack it into the data header object and back 
+and then write it. Then there will be 1 record. It will continue untill all the records are gone through.
