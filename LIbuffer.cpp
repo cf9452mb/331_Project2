@@ -130,11 +130,11 @@ int LIbuffer::Read(std::ifstream& file){
 
 // The size of the record and contents(with delimiter character) are written to the file
 //
-// @param ofstream The output file stream to be written too
+// @param fstream The file stream to be written too
 // @return This returns 1 on success
 // @pre The size and fields members must be set previously by Pack()
 // @post The record is written to the file with size at the beginning and delimiters between the fields
-int LIbuffer::Write(std::ofstream& file)
+int LIbuffer::Write(std::fstream& file)
 {
     file << this->getSize();
     
