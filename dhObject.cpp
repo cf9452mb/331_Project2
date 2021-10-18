@@ -1,27 +1,27 @@
 //-------------------------------------------------------------
 // dhObject.cpp
 // This is the implementation file for the dhObject.h
-// Author: Myint Aung
+// Author: Myint Aung, Jordan Hebler
 //-------------------------------------------------------------
 // This .cpp file contains the functions of the class dhObject
 //
 // This file makes use of the functions of the class dhObject which
-// includes functions that will set the
-// values of file structure type, header record size,
-// number of bytes for each record size integer, size format type,
+// includes functions that will set the values of file structure
+// type, primary key ordinal position, header record size, size format type,
 // index file name, record count and count of fields per record
 // and as well as functions to get those values after
 // they are set
 //-------------------------------------------------------------
 
 #include <string>
+#include <vector>
 #include "dhObject.h"
 
 //
 // @file dhObject.cpp
 // @brief This is the implementation file for the class dhObject
 //
-// @author Myint Aung
+// @author Myint Aung, Jordan Hebler
 //
 
 //  This is the constructor to set valid values to the data members of the class
@@ -29,19 +29,17 @@
 // @param None
 // @return None
 // @pre None
-// @post This is a constructor that sets valid values to fileversion, header_size, numofbytes, recordcount, fieldcount, filetype, sizeformat, indexfile, fieldname, fieldtype.
+// @post This is a constructor that sets valid values to fileversion, header_size, recordcount, fieldcount, primekey, filetype, sizeformat, indexfile, fieldname, fieldtype.
 dhObject::dhObject()
-{	
-	fileversion = 0;
-	header_size = 0;
-	numofbytes = 0;
-	recordcount = 0;
-	fieldcount = 0;
-	filetype = "";
-	sizeformat = "";
-	indexfile = "";
-	fieldname = "";
-	fieldtype = "";
+{
+    fileversion = 0;
+    header_size = 0;
+    recordcount = 0;
+    fieldcount = 0;
+    primekey = 0;
+    filetype = "";
+    sizeformat = "";
+    indexfile = "";
 }
     
 //
@@ -52,7 +50,7 @@ dhObject::dhObject()
 // @pre None
 // @post This function returns the version of the file structure type
 const int dhObject::getFileversion(){
-	return fileversion;
+    return fileversion;
 }
 
 //
@@ -63,18 +61,7 @@ const int dhObject::getFileversion(){
 // @pre None
 // @post This function returns the header record size
 const int dhObject::getHeader_size(){
-	return header_size;
-}
-
-//
-// accessor for numofbytes
-//
-// @param None
-// @return This function returns the number of bytes for each record size integer
-// @pre None
-// @post This function returns the number of bytes for each record size integer
-const int dhObject::getNumofbytes(){
-	return numofbytes;
+    return header_size;
 }
 
 //
@@ -85,7 +72,7 @@ const int dhObject::getNumofbytes(){
 // @pre None
 // @post This function returns the record count
 const int dhObject::getRecordcount(){
-	return recordcount;
+    return recordcount;
 }
 
 //
@@ -96,7 +83,18 @@ const int dhObject::getRecordcount(){
 // @pre None
 // @post This function returns the count of fields per record
 const int dhObject::getFieldcount(){
-	return fieldcount;
+    return fieldcount;
+}
+
+//
+// accessor for primekey
+//
+// @param None
+// @return This function returns the ordinal position of primary key
+// @pre None
+// @post This function returns the ordinal position of primary key
+const int dhObject::getPrimekey(){
+    return primekey;
 }
 
 //
@@ -107,7 +105,7 @@ const int dhObject::getFieldcount(){
 // @pre None
 // @post This function returns the file structure type
  const std::string dhObject::getFiletype(){
-	 return filetype;
+     return filetype;
  }
  
 //
@@ -118,7 +116,7 @@ const int dhObject::getFieldcount(){
 // @pre None
 // @post This function returns the size format type (ASCII or binary)
 const std::string dhObject::getSizeformat(){
-	return sizeformat;
+    return sizeformat;
 }
     
 //
@@ -129,29 +127,29 @@ const std::string dhObject::getSizeformat(){
 // @pre None
 // @post This function returns the index file name
 const std::string dhObject::getIndexfile(){
-	return indexfile;
+    return indexfile;
 }
 
 //
-// accessor for fieldname
+// accessor for fieldname vector
 //
 // @param None
-// @return This function returns the name for each field
+// @return This function returns the vector containing field names
 // @pre None
-// @post This function returns the name for each field
-const std::string dhObject::getFieldname(){
-	return fieldname;
+// @post This function returns the vector containing field names
+const std::vector<std::string> dhObject::getFieldname(){
+    return fieldname;
 }
 
 //
-// accessor for fieldtype
+// accessor for fieldtype vector
 //
 // @param None
-// @return This function returns the type for each field
+// @return This function returns the vector containing field types
 // @pre None
-// @post This function returns the type for each field
-const std::string dhObject::getFieldtype(){
-	return fieldtype;
+// @post This function returns the vector containing field types
+const std::vector<std::string> dhObject::getFieldtype(){
+    return fieldtype;
 }
 
 //
@@ -162,7 +160,7 @@ const std::string dhObject::getFieldtype(){
 // @pre None
 // @post This function sets the value of fileversion
 void dhObject::setFileversion(int Fileversion){
-	fileversion = Fileversion;
+    fileversion = Fileversion;
 }
 
 //
@@ -173,18 +171,7 @@ void dhObject::setFileversion(int Fileversion){
 // @pre None
 // @post This function sets the value of header_size
 void dhObject::setHeader_size(int Headersize){
-	header_size = Headersize;
-}
-
-//
-// Mutator for the numofbytes
-//
-// @param Integer This function takes an int value called Numofbytes as parameter to set the value of numofbytes
-// @return None
-// @pre None
-// @post This function sets the value of numofbytes
-void dhObject::setNumofbytes(int Numofbytes){
-	numofbytes = Numofbytes;
+    header_size = Headersize;
 }
 
 //
@@ -195,7 +182,7 @@ void dhObject::setNumofbytes(int Numofbytes){
 // @pre None
 // @post This function sets the value of recordcount
 void dhObject::setRecordcount(int Recordcount){
-	recordcount = Recordcount;
+    recordcount = Recordcount;
 }
 
 //
@@ -206,7 +193,18 @@ void dhObject::setRecordcount(int Recordcount){
 // @pre None
 // @post This function sets the value of fieldcount
 void dhObject::setFieldcount(int Fieldcount){
-	fieldcount = Fieldcount;
+    fieldcount = Fieldcount;
+}
+
+//
+// Mutator for the primekey
+//
+// @param Integer This function takes an int value called Primekey as parameter to set the value of primekey
+// @return None
+// @pre None
+// @post This function sets the value of primekey
+void dhObject::setPrimekey(int Primekey){
+    primekey = Primekey;
 }
 
 //
@@ -217,7 +215,7 @@ void dhObject::setFieldcount(int Fieldcount){
 // @pre None
 // @post This function sets the value of filetype
 void dhObject::setFiletype(std::string Filetype){
-	filetype = Filetype;
+    filetype = Filetype;
 }
 
 //
@@ -228,7 +226,7 @@ void dhObject::setFiletype(std::string Filetype){
 // @pre None
 // @post This function sets the value of sizeformat
 void dhObject::setSizeformat(std::string Sizeformat){
-	sizeformat = Sizeformat;
+    sizeformat = Sizeformat;
 }
 
 //
@@ -239,27 +237,27 @@ void dhObject::setSizeformat(std::string Sizeformat){
 // @pre None
 // @post This function sets the value of indexfile
 void dhObject::setIndexfile(std::string Indexfile){
-	indexfile = Indexfile;
+    indexfile = Indexfile;
 }
 
 //
-// Mutator for the fieldname
+// Mutator for the fieldname vector
 //
-// @param String This function takes a string value called Fieldname as parameter to set the value of fieldname
+// @param String This function takes a string value called Fieldname as parameter to push the string on fieldname vector
 // @return None
 // @pre None
-// @post This function sets the value of fieldname
+// @post This function sets a value in fieldname vector
 void dhObject::setFieldname(std::string Fieldname){
-	fieldname = Fieldname;
+    fieldname.push_back(Fieldname);
 }
 
 //
-// Mutator for the fieldtype
+// Mutator for the fieldtype vector
 //
-// @param String This function takes a string value called Fieldtype as parameter to set the value of fieldtype
+// @param String This function takes a string value called Fieldtype as parameter to push the string on fieldname vector
 // @return None
 // @pre None
-// @post This function sets the value of fieldtype
+// @post This function sets a value in fieldtype vector
 void dhObject::setFieldtype(std::string Fieldtype){
-	fieldtype = Fieldtype;
+    fieldtype.push_back(Fieldtype);
 }
