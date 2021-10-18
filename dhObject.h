@@ -1,7 +1,7 @@
 //-------------------------------------------------------------
 // dhObject.h
 // Class for storing the data for data header object
-// Author: Myint Aung
+// Author: Myint Aung, Jordan Hebler
 //-------------------------------------------------------------
 // This header file includes a class called dhObject.
 //
@@ -16,24 +16,27 @@
 #ifndef DHOBJECT_H
 #define DHOBJECT_H
 
+
 /**
  * @file dhObject.h
  * @brief This is the header file for the data header object class
  *
  * @author Myint Aung
+ * @author Jordan Hebler
  */
 
 /**
  * @brief This class is used to store the data that we extract from the CSV file
- * @details This dhObject class includes functions that will set the values of file structure type, 
- *	header record size, number of bytes for each record size integer, size format type,
- *	index file name, record count and count of fields per record and as well as functions to get those values after they are set
+ * @details This dhObject class includes functions that will set the values of file structure type,
+ *    header record size, number of bytes for each record size integer, size format type,
+ *    index file name, record count and count of fields per record and as well as functions to get those values after they are set
  * @author Myint Aung
 */
 class dhObject
 {
-private: int fileversion, header_size, numofbytes, recordcount, fieldcount;
-std::string filetype, sizeformat, indexfile, fieldname, fieldtype;
+private: int fileversion, header_size, recordcount, fieldcount, primekey;
+    std::string filetype, sizeformat, indexfile;
+    std::vector<std::string> fieldname, fieldtype;
 
 public:
 /**
@@ -42,7 +45,7 @@ public:
  * @param None
  * @return None
  * @pre None
- * @post This is a constructor that sets valid values to fileversion, header_size, numofbytes, recordcount, fieldcount, filetype, sizeformat, indexfile, fieldname, fieldtype.
+ * @post This is a constructor that sets valid values to fileversion, header_size, recordcount, fieldcount, primekey, filetype, sizeformat, indexfile, fieldname, fieldtype.
 */
 dhObject();
     
@@ -67,16 +70,6 @@ const int getFileversion();
 const int getHeader_size();
 
 /**
- *  accessor for numofbytes
- *
- * @param None
- * @return This function returns the number of bytes for each record size integer
- * @pre None
- * @post This function returns the number of bytes for each record size integer
-*/
-const int getNumofbytes();
-
-/**
  *  accessor for recordcount
  *
  * @param None
@@ -95,7 +88,17 @@ const int getRecordcount();
  * @post This function returns the count of fields per record
 */
 const int getFieldcount();
-
+    
+/**
+ *  accessor for primekey
+ *
+ * @param None
+ * @return This function returns the ordinal location of primary key
+ * @pre None
+ * @post This function returns the ordinal location of primary key
+*/
+const int getPrimekey();
+        
 /**
  *  accessor for filetype
  *
@@ -128,24 +131,24 @@ const std::string getSizeformat();
 const std::string getIndexfile();
 
 /**
- *  accessor for fieldname
+ *  accessor for fieldname vector
  *
  * @param None
- * @return This function returns the name for each field
+ * @return This function returns a vector containing the name for each field
  * @pre None
- * @post This function returns the name for each field
+ * @post This function returns a vector containing the name for each field
 */
-const std::string getFieldname();
+const std::vector<std::string> getFieldname();
 
 /**
- *  accessor for fieldtype
+ *  accessor for fieldtype vector
  *
  * @param None
- * @return This function returns the type for each field
+ * @return This function returns a vector containing the type of each field
  * @pre None
- * @post This function returns the type for each field
+ * @post This function returns a vector containing the type of each field
 */
-const std::string getFieldtype();
+const std::vector<std::string> getFieldtype();
 
 
 /**
@@ -169,16 +172,6 @@ void setFileversion(int Fileversion);
 void setHeader_size(int Headersize);
 
 /**
- *  Mutator for the numofbytes
- *
- * @param Integer This function takes an int value called Numofbytes as parameter to set the value of numofbytes
- * @return None
- * @pre None
- * @post This function sets the value of numofbytes
-*/
-void setNumofbytes(int Numofbytes);
-
-/**
  *  Mutator for the recordcount
  *
  * @param Integer This function takes an int value called Recordcount as parameter to set the value of recordcount
@@ -197,6 +190,16 @@ void setRecordcount(int Recordcount);
  * @post This function sets the value of fieldcount
 */
 void setFieldcount(int Fieldcount);
+    
+/**
+ *  Mutator for the primekey
+ *
+ * @param Integer This function takes an int value called Primekey as parameter to set the value of primekey
+ * @return None
+ * @pre None
+ * @post This function sets the value of primekey
+*/
+void setPrimekey(int Primekey);
 
 /**
  *  Mutator for the filetype
@@ -231,7 +234,7 @@ void setIndexfile(std::string Indexfile);
 /**
  *  Mutator for the fieldname
  *
- * @param String This function takes a string value called Fieldname as parameter to set the value of fieldname
+ * @param Vector This function takes a string value called Fieldname as parameter to set a value in the fieldname vector
  * @return None
  * @pre None
  * @post This function sets the value of fieldname
@@ -241,7 +244,7 @@ void setFieldname(std::string Fieldname);
 /**
  *  Mutator for the fieldtype
  *
- * @param String This function takes a string value called Fieldtype as parameter to set the value of fieldtype
+ * @param Vector This function takes a string value called Fieldtype as parameter to set a value in the fieldtype vector
  * @return None
  * @pre None
  * @post This function sets the value of fieldtype
