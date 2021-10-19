@@ -1,7 +1,7 @@
 //--------------------------------------------------
 // buffer.h
 // Class for a buffer which reads and unpacks data
-// Author: Jordan hebler, Justine Canlas,
+// Author: Jordan Hebler, Justine Canlas,
 //         Mariah Coughlin
 //--------------------------------------------------
 // This header file includes a class DelimTextBuffer
