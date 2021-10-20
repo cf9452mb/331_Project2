@@ -25,6 +25,11 @@
  * @author Jordan Hebler
  */
 
+struct field {
+    std::string name;
+    std::string type;
+};
+
 /**
  * @brief This class is used to store the data that we extract from the CSV file
  * @details This dhObject class includes functions that will set the values of file structure type,
@@ -34,9 +39,9 @@
 */
 class dhObject
 {
-private: int fileversion, header_size, recordcount, fieldcount, primekey;
+private: int fileversion, headersize, recordcount, fieldcount, primekey;
     std::string filetype, sizeformat, indexfile;
-    std::vector<std::string> fieldname, fieldtype;
+    std::vector<field> fieldpairs;
 
 public:
 /**
@@ -45,7 +50,7 @@ public:
  * @param None
  * @return None
  * @pre None
- * @post This is a constructor that sets valid values to fileversion, header_size, recordcount, fieldcount, primekey, filetype, sizeformat, indexfile, fieldname, fieldtype.
+ * @post This is a constructor that sets valid values to fileversion, headersize, recordcount, fieldcount, primekey, filetype, sizeformat, indexfile, fieldname, fieldtype.
 */
 dhObject();
     
@@ -67,7 +72,7 @@ const int getFileversion();
  * @pre None
  * @post This function returns the header record size
 */
-const int getHeader_size();
+const int getHeadersize();
 
 /**
  *  accessor for recordcount
@@ -131,25 +136,14 @@ const std::string getSizeformat();
 const std::string getIndexfile();
 
 /**
- *  accessor for fieldname vector
+ *  accessor for fieldpairs vector
  *
  * @param None
- * @return This function returns a vector containing the name for each field
+ * @return This function returns a vector containing field structures
  * @pre None
- * @post This function returns a vector containing the name for each field
+ * @post This function returns a vector containing field structures
 */
-const std::vector<std::string> getFieldname();
-
-/**
- *  accessor for fieldtype vector
- *
- * @param None
- * @return This function returns a vector containing the type of each field
- * @pre None
- * @post This function returns a vector containing the type of each field
-*/
-const std::vector<std::string> getFieldtype();
-
+const std::vector<field> getFieldpairs();
 
 /**
  *  Mutator for the fileversion
@@ -167,9 +161,9 @@ void setFileversion(int Fileversion);
  * @param Integer This function takes an int value called Headersize as parameter to set the value of header_size
  * @return None
  * @pre None
- * @post This function sets the value of header_size
+ * @post This function sets the value of headersize
 */
-void setHeader_size(int Headersize);
+void setHeadersize(int Headersize);
 
 /**
  *  Mutator for the recordcount
@@ -232,24 +226,14 @@ void setSizeformat(std::string Sizeformat);
 void setIndexfile(std::string Indexfile);
 
 /**
- *  Mutator for the fieldname
+ *  Mutator for the fieldpairs vector
  *
- * @param Vector This function takes a string value called Fieldname as parameter to set a value in the fieldname vector
+ * @param String This function takes two string values, first being name, second being type
  * @return None
  * @pre None
- * @post This function sets the value of fieldname
+ * @post This function sets a value in fieldpairs
 */
-void setFieldname(std::string Fieldname);
-
-/**
- *  Mutator for the fieldtype
- *
- * @param Vector This function takes a string value called Fieldtype as parameter to set a value in the fieldtype vector
- * @return None
- * @pre None
- * @post This function sets the value of fieldtype
-*/
-void setFieldtype(std::string Fieldtype);
+void setFieldpairs(std::string Name, std::string Type);
 
 };
 #endif
