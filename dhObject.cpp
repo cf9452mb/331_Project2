@@ -29,11 +29,11 @@
 // @param None
 // @return None
 // @pre None
-// @post This is a constructor that sets valid values to fileversion, header_size, recordcount, fieldcount, primekey, filetype, sizeformat, indexfile, fieldname, fieldtype.
+// @post This is a constructor that sets valid values to fileversion, headersize, recordcount, fieldcount, primekey, filetype, sizeformat, indexfile, fieldpairs
 dhObject::dhObject()
 {
     fileversion = 0;
-    header_size = 0;
+    headersize = 0;
     recordcount = 0;
     fieldcount = 0;
     primekey = 0;
@@ -54,14 +54,14 @@ const int dhObject::getFileversion(){
 }
 
 //
-//  accessor for header_size
+//  accessor for headersize
 //
 // @param None
 // @return This function returns the header record size
 // @pre None
 // @post This function returns the header record size
-const int dhObject::getHeader_size(){
-    return header_size;
+const int dhObject::getHeadersize(){
+    return headersize;
 }
 
 //
@@ -137,19 +137,8 @@ const std::string dhObject::getIndexfile(){
 // @return This function returns the vector containing field names
 // @pre None
 // @post This function returns the vector containing field names
-const std::vector<std::string> dhObject::getFieldname(){
-    return fieldname;
-}
-
-//
-// accessor for fieldtype vector
-//
-// @param None
-// @return This function returns the vector containing field types
-// @pre None
-// @post This function returns the vector containing field types
-const std::vector<std::string> dhObject::getFieldtype(){
-    return fieldtype;
+const std::vector<field> dhObject::getFieldpairs(){
+    return fieldpairs;
 }
 
 //
@@ -166,12 +155,12 @@ void dhObject::setFileversion(int Fileversion){
 //
 // Mutator for the headersize
 //
-// @param Integer This function takes an int value called Headersize as parameter to set the value of header_size
+// @param Integer This function takes an int value called Headersize as parameter to set the value of headersize
 // @return None
 // @pre None
-// @post This function sets the value of header_size
-void dhObject::setHeader_size(int Headersize){
-    header_size = Headersize;
+// @post This function sets the value of headersize
+void dhObject::setHeadersize(int Headersize){
+    headersize = Headersize;
 }
 
 //
@@ -241,23 +230,16 @@ void dhObject::setIndexfile(std::string Indexfile){
 }
 
 //
-// Mutator for the fieldname vector
+// Mutator for the fieldpairs
 //
-// @param String This function takes a string value called Fieldname as parameter to push the string on fieldname vector
+// @param String This function takes two string values, first being name, second being type
 // @return None
 // @pre None
-// @post This function sets a value in fieldname vector
-void dhObject::setFieldname(std::string Fieldname){
-    fieldname.push_back(Fieldname);
-}
-
-//
-// Mutator for the fieldtype vector
-//
-// @param String This function takes a string value called Fieldtype as parameter to push the string on fieldname vector
-// @return None
-// @pre None
-// @post This function sets a value in fieldtype vector
-void dhObject::setFieldtype(std::string Fieldtype){
-    fieldtype.push_back(Fieldtype);
+// @post This function sets field pair in the fieldpairs vector
+void dhObject::setFieldpairs(std::string Name, std::string Type){
+    int size = fieldpairs.size();
+    field pair;
+    pair.name = Name;
+    pair.type = Type;
+    fieldpairs.push_back(pair);
 }
