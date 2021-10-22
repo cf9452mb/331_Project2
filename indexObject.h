@@ -1,6 +1,6 @@
 #ifndef INDEXOBJECT_H
 #define INDEXOBJECT_H
-#include <string>
+
 /**
 * @brief
 * @details
@@ -9,23 +9,27 @@
 */
 class indexObject
 {
-private: 
-std:: string keytype, reftype, pkey;
-int keylength, reflength;
+private:
+    std::string keytype, reftype, pkey, ref;
+    int keylength, reflength, headersize;
 
 public:
-indexObject();
-const int getkeylength();
-const int getreftype();
-const std::string getkeytype();
-const std::string getreflength();
-const std::string getPkey();
+    indexObject();
+    const int getKeylength();
+    const int getReflength();
+    const int getHeadersize();
+    const std::string getReftype();
+    const std::string getKeytype();
+    const std::string getPkey();
+    const std::string getRef();
 
-void setkeyLength(int Length);
-void setrefLength(int refLength);
-void setkeyType(std::string keyType);
-void setrefType(std::string refType);
-void setpkey(std::string Pkey);
+    void setKeylength(int Length);
+    void setReflength(int refLength);
+    void setHeadersize(int size);
+    void setKeytype(std::string keyType);
+    void setReftype(std::string refType);
+    void setPkey(std::string Pkey);
+    void setRef(std::string Ref);
 };
-	
+    
 #endif
