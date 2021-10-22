@@ -1,51 +1,69 @@
 #include <string>
-#include "indexObject.h"
 
+#include "indexObject.h"
 
 indexObject::indexObject()
 {
-	pkey = "";
-	keytype = "";
-	reftype = "";
-	keylength = 0;
-	reflength = 0;
+    pkey = "";
+    ref = "";
+    keytype = "";
+    reftype = "";
+    keylength = 0;
+    reflength = 0;
+    headersize = 0;
 }
 
-const int indexObject::getkeylength(){
-	return keylength;
+const int indexObject::getKeylength(){
+    return keylength;
 }
-const int indexObject::getreftype(){
-	return reflength;
-}
-
-const std::string indexObject::getkeytype(){
-	return keytype;
+const std::string indexObject::getReftype(){
+    return reftype;
 }
 
-const std::string indexObject::getreflength(){
-	return reftype;
+const std::string indexObject::getKeytype(){
+    return keytype;
+}
+
+const int indexObject::getReflength(){
+    return reflength;
+}
+
+const int indexObject::getHeadersize(){
+    return headersize;
 }
 
 const std::string indexObject::getPkey(){
-	return pkey;
+    return pkey;
 }
 
-void indexObject::setkeyLength(int Length){
-	keylength = Length;
+const std::string indexObject::getRef(){
+    return ref;
 }
 
-void indexObject::setrefLength(int refLength){
-	reflength = refLength;
+void indexObject::setKeylength(int Length){
+    keylength = Length;
 }
 
-void indexObject::setkeyType(std::string keyType){
-	keytype = keyType;
+void indexObject::setReflength(int refLength){
+    reflength = refLength;
 }
 
-void indexObject::setrefType(std::string refType){
-	reftype = refType;
+void indexObject::setHeadersize(int size){
+    headersize = size;
 }
 
-void indexObject::setpkey(std::string Pkey){
-	pkey = Pkey;
+void indexObject::setKeytype(std::string keyType){
+    keytype = keyType;
+}
+
+void indexObject::setReftype(std::string refType){
+    reftype = refType;
+}
+
+void indexObject::setPkey(std::string Pkey){
+    pkey = Pkey;
+}
+
+void indexObject::setRef(std::string Ref){
+    ref = Ref;
 }
