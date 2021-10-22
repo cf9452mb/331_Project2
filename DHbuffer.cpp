@@ -28,6 +28,8 @@ DataHeaderBuffer::DataHeaderBuffer(){
 
 int DataHeaderBuffer::Pack(dhObject& object){
     
+    this->Clear();
+    
     headerinfo.push_back(object.getFiletype());
     headerinfo.push_back(std::to_string(object.getFileversion()));
     headerinfo.push_back(std::to_string(object.getHeadersize()));
@@ -40,6 +42,21 @@ int DataHeaderBuffer::Pack(dhObject& object){
     
     return 1;
     
+}
+
+int DataHeaderBuffer::Pack(indexObject& object){
+    
+    this->Clear();
+    
+    headerinfo.push_back(object.getPkey());
+    headerinfo.push_back(object.getKeytype());
+    headerinfo.push_back(std::to_string(object.getKeylength()));
+    headerinfo.push_back(object.getRef());
+    headerinfo.push_back(object.getReftype());
+    headerinfo.push_back(std::to_string(object.getReflength()));
+    headerinfo.push_back(std::to_string(object.getHeadersize()));
+    
+    return 1;
 }
 
 int DataHeaderBuffer::Unpack(dhObject& object){
@@ -59,7 +76,21 @@ int DataHeaderBuffer::Unpack(dhObject& object){
     
 }
 
+int DataHeaderBuffer::Unpack(indexObject& object){
+    object.setPkey(headerinfo[0]);
+    object.setKeytype(headerinfo[1]);
+    object.setKeylength(stoi(headerinfo[2]));
+    object.setRef(headerinfo[3]);
+    object.setReftype(headerinfo[4]);
+    object.setReflength(stoi(headerinfo[5]));
+    object.setHeadersize(stoi(headerinfo[6]));
+    
+    return 1;
+}
+
 int DataHeaderBuffer::readDataHeader(std::ifstream& file){
+    
+    this->Clear();
     
     file.seekg(0, std::ios::beg);
     std::string line;
@@ -80,6 +111,24 @@ int DataHeaderBuffer::readDataHeader(std::ifstream& file){
     
 }
 
+int DataHeaderBuffer::readIndexHeader(std::ifstream& file){
+    
+    this->Clear();
+    
+    file.seekg(0, std::ios::beg);
+    std::string line;
+    int count = 0;
+    while(count < 7){
+        getline(file, line);
+        headerinfo.push_back(parseLine(line));
+        count++;
+    }
+    
+    return 1;
+    
+}
+
+
 int DataHeaderBuffer::writeDataHeader(std::fstream& file){
     
     file.seekp(0, std::ios::beg);
@@ -98,6 +147,21 @@ int DataHeaderBuffer::writeDataHeader(std::fstream& file){
     file << "PRIM/KEY= " << headerinfo[7] << std::endl;
    
     return 1;
+}
+
+int DataHeaderBuffer::writeIndexHeader(std::fstream& file){
+    
+    file.seekp(0, std::ios::beg);
+    file << "PRIMEKEY= " << headerinfo[0] << std::endl;
+    file << "KEY_TYPE= " << headerinfo[1] << std::endl;
+    file << "KEY_LEN = " << headerinfo[2] << std::endl;
+    file << "REFERENC= " << headerinfo[3] << std::endl;
+    file << "REF_TYPE= " << headerinfo[4] << std::endl;
+    file << "REF_LEN = " << headerinfo[5] << std::endl;
+    file << "HDR_SIZE= " << headerinfo[6] << std::endl;
+    
+    return 1;
+    
 }
 
 void DataHeaderBuffer::setFieldpairs(std::vector<field> pairs){
