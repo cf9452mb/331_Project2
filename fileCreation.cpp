@@ -74,7 +74,6 @@ int main (int argc, char* argv[]) {
         
     }
     
-    DHbuffer.Clear();
     DHbuffer.Pack(object);
     DHbuffer.writeDataHeader(fout);
     
