@@ -10,6 +10,7 @@
 #define DHBUFFER_H
 
 #include "dhObject.h"
+#include "indexObject.h"
 
 /**
  * @file DHbuffer.h
@@ -27,11 +28,19 @@ class DataHeaderBuffer
     
     int Pack(dhObject& object);
     
+    int Pack(indexObject& object);
+    
     int Unpack(dhObject& object);
+    
+    int Unpack(indexObject& object);
 
     int readDataHeader(std::ifstream& file);
+    
+    int readIndexHeader(std::ifstream& file);
 
     int writeDataHeader(std::fstream& file);
+    
+    int writeIndexHeader(std::fstream& file);
 
     void setFieldpairs(std::vector<field> pairs);
     
