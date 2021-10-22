@@ -4,6 +4,7 @@
 
 indexObject::indexObject()
 {
+	pkey = "";
 	keytype = "";
 	reftype = "";
 	keylength = 0;
