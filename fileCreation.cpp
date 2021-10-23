@@ -1,3 +1,20 @@
+//---------------------------------------------------------------------
+// fileCreation.cpp
+// Program used to create the Length Indicated data files with headers
+// Author: Jordan Hebler
+//---------------------------------------------------------------------
+// Specify the Data header object members before writing the header,
+// and specify the output stream to write the header/data too and the
+// input file stream to read the CSV data from
+//---------------------------------------------------------------------
+
+/**
+ * @file fileCreation.cpp
+ * @brief This is the program to create a Length Indicated file with a header record
+ *
+ * @author Jordan Hebler
+ */
+
 #include <iostream>
 #include <fstream>
 #include <vector>
