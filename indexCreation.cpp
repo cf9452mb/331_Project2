@@ -1,5 +1,3 @@
-
-
 //---------------------------------------------------------------------
 // indexCreation.cpp
 // Program used to create a Primary Key Index file with a header record
