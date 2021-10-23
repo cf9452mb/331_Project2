@@ -1,3 +1,24 @@
+
+
+//---------------------------------------------------------------------
+// indexCreation.cpp
+// Program used to create a Primary Key Index file with a header record
+// from a specified Length Indicated Data file
+// Author: Jordan Hebler
+//---------------------------------------------------------------------
+// Specify the Index header object members before writing the header.
+// You want to specify the output file stream to write the header and
+// index data to and the input file stream to read the Length Indicated
+// data from
+//---------------------------------------------------------------------
+
+/**
+ * @file indexCreation.cpp
+ * @brief This is the program to create a Primary Key Index file with a header record
+ *
+ * @author Jordan Hebler
+ */
+
 #include <iostream>
 #include <fstream>
 #include <vector>
