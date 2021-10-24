@@ -17,6 +17,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 #include <string>
 
@@ -27,12 +28,15 @@
 
 using namespace std;
 
-void setFields(vector<string> tokens, zipCode& record);
+void parseHeader(vector<string>& v, string s);
+void setFields(vector<string> tokens, vector<string> header, zipCode& record);
 
 int main (int argc, char* argv[]) {
     ifstream fin;
     fstream fout;
     string line;
+    string header = "";
+    vector<string> headerInfo;
     int count = 0;
     
     dhObject object;
@@ -69,6 +73,18 @@ int main (int argc, char* argv[]) {
     
     while (getline(fin, line)) {
         count++;
+        
+        //Takes the header info from the CSV file and concatenates it into a single string
+        if(count <= 3){
+            header += line;
+        }
+        
+        //Header is fully read, time to extract each field and put into the headerInfo vector
+        if(count == 3){
+            parseHeader(headerInfo, header);
+        }
+        
+        //Header has been read, now at the data in the file
         if(count > 3){
             buffer.Read(line);
         
@@ -78,7 +94,7 @@ int main (int argc, char* argv[]) {
         
             zipCode record;
         
-            setFields(tokens, record);
+            setFields(tokens, headerInfo, record);
         
             LI.Pack(record);
         
@@ -88,6 +104,7 @@ int main (int argc, char* argv[]) {
             
             object.setRecordcount(object.getRecordcount() + 1);
         }
+        
         
     }
     
@@ -102,33 +119,47 @@ int main (int argc, char* argv[]) {
 
 //*****************************************************************************************
 //This sets the fields of each record object used for the program
-void setFields(vector<string> tokens, zipCode& record){
+//Compares each field with the header record to ensure correct data is set
+void setFields(vector<string> tokens, vector<string> header, zipCode& record){
     
     for(int i = 0; i < tokens.size(); i++)
     {
-        if (i == 0 ) {
+        if (header[i] ==  "\"ZipCode\"") {
             //Zipcode
             record.setZip(stoi(tokens[i]));
         }
-        if (i == 1 ) {
+        if (header[i] == "\"PlaceName\"" ) {
             //Placename
             record.setPlacename(tokens[i]);
         }
-        if (i == 2 ) {
+        if (header[i] == "State" ) {
             //State
             record.setState(tokens[i]);
         }
-        if (i == 3 ) {
+        if (header[i] == "County" ) {
             //County
             record.setCounty(tokens[i]);
         }
-        if (i == 4 ) {
+        if (header[i] == "Lat" ) {
             //Latitude
             record.setLat(stod(tokens[i]));
         }
-        if (i == 5 ) {
+        if (header[i] == "Long" ) {
             //Longitude
             record.setLon(stod(tokens[i]));
         }
+    }
+}
+
+//Parses the header string and puts each field into a vector
+void parseHeader(vector<string>& v, string s){
+    
+    stringstream check1(s);
+  
+    string intermediate;
+  
+    while(getline(check1, intermediate, ','))
+    {
+        v.push_back(intermediate);
     }
 }
