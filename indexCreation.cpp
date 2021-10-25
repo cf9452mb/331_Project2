@@ -97,7 +97,14 @@ int main (int argc, char* argv[]) {
   return 0;
 }
 
-//Function used to see what's in the map before writing to the file
+/**
+* Function used to see what's in the map before writing to the file 
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 void outputValues(map<int,int> m){
     
     map<int,int>::iterator itr1;
