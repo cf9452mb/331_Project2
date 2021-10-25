@@ -24,26 +24,114 @@
 class DataHeaderBuffer
 {   public:
 
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     DataHeaderBuffer();
     
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     int Pack(dhObject& object);
     
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     int Pack(indexObject& object);
     
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     int Unpack(dhObject& object);
     
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     int Unpack(indexObject& object);
 
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     int readDataHeader(std::ifstream& file);
     
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     int readIndexHeader(std::ifstream& file);
 
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     int writeDataHeader(std::fstream& file);
     
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     int writeIndexHeader(std::fstream& file);
 
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     void setFieldpairs(std::vector<field> pairs);
     
+    /**
+    *
+    *
+    * @param
+    * @return
+    * @pre
+    * @post
+    */
     void Clear();
 
 private:
