@@ -39,15 +39,31 @@ int main (int argc, char* argv[]) {
     vector<string> headerInfo;
     int count = 0;
     
+    //Sets object as dhObject object
     dhObject object;
+    
+    //Calls mutator to set the value of the Filetype
     object.setFiletype("Length Indicated");
+    
+    //Calls mutator to set the value of the Fileversion
     object.setFileversion(1);
+    
+    //Calls mutator to set the value of the Headersize
     object.setHeadersize(256);
+    
+    //Calls mutator to set the Size format
     object.setSizeformat("ASCII");
+    
+    //Calls mutator to set the value of the Indexfile
     object.setIndexfile("ZipCodePKI.txt");
+    
+    //Calls mutator to set the value of the Recordcount
     object.setRecordcount(0);
+    
+    //Calls mutator to set the value of the Fieldcount
     object.setFieldcount(6);
     
+    //Calls mutator to set the values for the fieldpairs vector
     object.setFieldpairs("ZipCode", "int");
     object.setFieldpairs("Placename", "string");
     object.setFieldpairs("State", "string");
@@ -55,14 +71,17 @@ int main (int argc, char* argv[]) {
     object.setFieldpairs("Latitude", "double");
     object.setFieldpairs("Longitude", "double");
     
+    //Calls mutator to set the value of the Primekey
     object.setPrimekey(0);
     
+    //Sets DHbuffer as a DataHeaderBuffer object
     DataHeaderBuffer DHbuffer;
     DelimTextBuffer buffer(',');
     LIbuffer LI(',');
     
+    //Calls Pack function from the DHbuffer to pack the object
     DHbuffer.Pack(object);
-    
+   
     fout.open("ZipCodeLI.txt");
     
     DHbuffer.writeDataHeader(fout);
@@ -88,18 +107,25 @@ int main (int argc, char* argv[]) {
         if(count > 3){
             buffer.Read(line);
         
+            //Creates a vector string tokens
             vector<string> tokens;
-        
+            
+            //Calls in Unpack function from the buffer file to unpack the buffer into the vector of strings that is passed as a parameter. 
             buffer.Unpack(tokens);
-        
+            
+            //Constricts record
             zipCode record;
         
+            //Calls in setFields function from this file and sets the field of each record object used for the program. 
             setFields(tokens, headerInfo, record);
         
+            //Calls the Pack function from the LIbuffer and is used to pack the fields vector with the data members from a zipCode record.
             LI.Pack(record);
         
+            //Calls in write function from the LIbuffer which writes the size of the record and the contents to the file. 
             LI.Write(fout);
-        
+            
+            //Calls in Clear function function and will set the size to 0. The fields will be cleared.
             LI.Clear();
             
             object.setRecordcount(object.getRecordcount() + 1);
@@ -107,8 +133,9 @@ int main (int argc, char* argv[]) {
         
         
     }
-    
+    //Calls DHbuffer Pack function to pack from the header
     DHbuffer.Pack(object);
+    //Calls DHbuffer writeDataHeader function to write to the header
     DHbuffer.writeDataHeader(fout);
     
     
@@ -118,46 +145,53 @@ int main (int argc, char* argv[]) {
 }
 
 //*****************************************************************************************
-//This sets the fields of each record object used for the program
-//Compares each field with the header record to ensure correct data is set
+/**
+*This sets the field of each record object used for the program
+*It compares each field with the header record to ensure correct data is set
+*
+* @param Vector string of tokens, a vector string of header and call zipCode record class. 
+* @return None
+* @pre None
+* @post Compared all of the fields with the header record 
+*/
 void setFields(vector<string> tokens, vector<string> header, zipCode& record){
     
     for(int i = 0; i < tokens.size(); i++)
     {
         if (header[i] ==  "\"ZipCode\"") {
-            //Zipcode
+            //Compare Zipcode
             record.setZip(stoi(tokens[i]));
         }
         if (header[i] == "\"PlaceName\"" ) {
-            //Placename
+            //Compare Placename
             record.setPlacename(tokens[i]);
         }
         if (header[i] == "State" ) {
-            //State
+            //Compare State
             record.setState(tokens[i]);
         }
         if (header[i] == "County" ) {
-            //County
+            //Compare County
             record.setCounty(tokens[i]);
         }
         if (header[i] == "Lat" ) {
-            //Latitude
+            //Compare Latitude
             record.setLat(stod(tokens[i]));
         }
         if (header[i] == "Long" ) {
-            //Longitude
+            //Compare Longitude
             record.setLon(stod(tokens[i]));
         }
     }
 }
 
 /**
-*Parsess the header string and puts each field into a vector
+*Parses the header string and puts each field into a vector
 *
-* @param
-* @return
-* @pre
-* @post
+* @param Vector string of v and string of s
+* @return None
+* @pre None
+* @post parse header and puts each field into a vector 
 */
 void parseHeader(vector<string>& v, string s){
     
