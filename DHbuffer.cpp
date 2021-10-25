@@ -22,10 +22,26 @@ std::vector<field> parseFields(std::string line);
  * @author Jordan Hebler
  */
 
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 DataHeaderBuffer::DataHeaderBuffer(){
     //Empty for now
 }
 
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 int DataHeaderBuffer::Pack(dhObject& object){
     
     this->Clear();
@@ -44,6 +60,14 @@ int DataHeaderBuffer::Pack(dhObject& object){
     
 }
 
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 int DataHeaderBuffer::Pack(indexObject& object){
     
     this->Clear();
@@ -59,6 +83,14 @@ int DataHeaderBuffer::Pack(indexObject& object){
     return 1;
 }
 
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 int DataHeaderBuffer::Unpack(dhObject& object){
     object.setFiletype(headerinfo[0]);
     object.setFileversion(stoi(headerinfo[1]));
@@ -76,6 +108,14 @@ int DataHeaderBuffer::Unpack(dhObject& object){
     
 }
 
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 int DataHeaderBuffer::Unpack(indexObject& object){
     object.setPkey(headerinfo[0]);
     object.setKeytype(headerinfo[1]);
@@ -88,6 +128,14 @@ int DataHeaderBuffer::Unpack(indexObject& object){
     return 1;
 }
 
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 int DataHeaderBuffer::readDataHeader(std::ifstream& file){
     
     this->Clear();
@@ -111,6 +159,14 @@ int DataHeaderBuffer::readDataHeader(std::ifstream& file){
     
 }
 
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 int DataHeaderBuffer::readIndexHeader(std::ifstream& file){
     
     this->Clear();
@@ -128,7 +184,14 @@ int DataHeaderBuffer::readIndexHeader(std::ifstream& file){
     
 }
 
-
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 int DataHeaderBuffer::writeDataHeader(std::fstream& file){
     
     file.seekp(0, std::ios::beg);
@@ -149,6 +212,14 @@ int DataHeaderBuffer::writeDataHeader(std::fstream& file){
     return 1;
 }
 
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 int DataHeaderBuffer::writeIndexHeader(std::fstream& file){
     
     file.seekp(0, std::ios::beg);
@@ -164,10 +235,26 @@ int DataHeaderBuffer::writeIndexHeader(std::fstream& file){
     
 }
 
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 void DataHeaderBuffer::setFieldpairs(std::vector<field> pairs){
     this->fieldpairs = pairs;
 }
 
+/**
+*
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 void DataHeaderBuffer::Clear(){
     this->headerinfo.clear();
     this->fieldpairs.clear();
