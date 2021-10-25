@@ -37,31 +37,52 @@ int main (int argc, char* argv[]) {
     fstream fout;
     string line;
     
+    //Creates indexObject object called index
     indexObject index;
+    
+    //Creates dhObject object called data
     dhObject data;
     
+    //Calls in mutator to set the value of the Pkey
     index.setPkey("ZipCode");
+    
+    //Calls in mutator to set the value of the ketType
     index.setKeytype("int");
+    
+    //Calls in mutator to set the value of the Length
     index.setKeylength(5);
+    
+    //Calls in mutator to set the value of of the Ref
     index.setRef("Byte Offset");
+    
+    //Calls in mutator to set the value for the refType
     index.setReftype("int");
+    
+    //Calls in mutator to set the value for the refLength
     index.setReflength(7);
+    
+    //Calls in mutator to set the value for the size of the header
     index.setHeadersize(128);
  
     
+    //Creates DHbuffer object from DataHeaderBuffer class
     DataHeaderBuffer DHbuffer;
     LIbuffer LI(',');
     
+    //Calls the Pack function from the DHbuffer to pack index object
     DHbuffer.Pack(index);
     
     fout.open("ZipCodePKI.txt");
     
+    //Calls the writeIndexHeader function from the DHbuffer to write ZipCodePKI.txt
     DHbuffer.writeIndexHeader(fout);
     
     fin.open("ZipCodeLI.txt");
     
+    //Calls in readDataHeader function fron the DHbuffer to read ZipCodeLI.txt
     DHbuffer.readDataHeader(fin);
     
+    //Calls in Unpack function from the DHbuffer to unpack data object.
     DHbuffer.Unpack(data);
     
     map< int, int > m;
@@ -92,6 +113,7 @@ int main (int argc, char* argv[]) {
         
     }
     
+    //Closes .txt files
     fin.close();
     fout.close();
   return 0;
@@ -100,10 +122,10 @@ int main (int argc, char* argv[]) {
 /**
 * Function used to see what's in the map before writing to the file 
 *
-* @param
-* @return
-* @pre
-* @post
+* @param map with 2 integers called m
+* @return See if the value is in the map
+* @pre None
+* @post Goes through and sees what's in the map
 */
 void outputValues(map<int,int> m){
     
