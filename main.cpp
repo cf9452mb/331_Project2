@@ -20,31 +20,37 @@
 
 using namespace std;
 
-string dataFile = "ZipCodeLI.txt";
-string indexFile = "ZipCodePKI.txt";
 
 ifstream finIndex, finData;
 
-map< int, int > createContainer(string dataFile, string indexFile);
+map< int, int > createContainer(string dataFile);
 void searchContainer(map< int, int > m, vector<int> v);
 
 int main(int argc, char* argv[])
 {
+    if(argc < 2){
+        cerr << "Invalid number of arguments!" << endl;
+        cerr << "Format = ./test data.txt [-Z<ZipCode>]" << endl;
+        exit(1);
+    }
+    
     string filename = argv[0];
+    string dataFile = argv[1];
+    
     vector<int> zipcodes;
     int number;
     
-    while ((argc > 1) && (argv[1][0] == '-')) {
+    while ((argc > 2) && (argv[2][0] == '-')) {
         
-        switch (argv [1] [1]) {
+        switch (argv [2] [1]) {
                 
             case 'Z':
-                number =  atoi(&argv[1][2]);
+                number =  atoi(&argv[2][2]);
                 zipcodes.push_back(number);
                 break;
                 
             default:
-                cerr << "Invalid argument: " << argv[1] << "\n";
+                cerr << "Invalid argument: " << argv[2] << "\n";
             }
         
         ++argv;
@@ -53,7 +59,7 @@ int main(int argc, char* argv[])
     
     
     
-    map< int, int > m = createContainer(dataFile, indexFile);
+    map< int, int > m = createContainer(dataFile);
     
     searchContainer(m, zipcodes);
     
@@ -66,7 +72,7 @@ int main(int argc, char* argv[])
 //***********************************************************************************************************
 
 
-map< int, int > createContainer(string dataFile, string indexFile){
+map< int, int > createContainer(string dataFile){
     
     DataHeaderBuffer DH;
     
@@ -81,14 +87,16 @@ map< int, int > createContainer(string dataFile, string indexFile){
         exit(1);
     }
     
-    finIndex.open(indexFile);
+    DH.readDataHeader(finData);
+    DH.Unpack(data);
+    
+    finIndex.open(data.getIndexfile());
     if(finIndex.fail()){
         cout << "Failed to open Index file! Exiting program" << endl;
         exit(2);
     }
     
-    DH.readDataHeader(finData);
-    DH.Unpack(data);
+    
     DH.readIndexHeader(finIndex);
     DH.Unpack(index);
         
