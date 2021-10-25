@@ -16,13 +16,13 @@ int main(int argc, char* argv[])
   	vector<int> zipcodes;
 	int number;
         while ((argc > 1) && (argv[1][0] == '-')) {
-			switch (argv [1] [1]) {
-				case 'Z':
-					number =  atoi(argv[1][2]);
-            		zipcodes.push_back(number);
+		switch (argv [1] [1]) {
+			case 'Z':
+				number =  atoi(argv[1][2]);
+            			zipcodes.push_back(number);
     			default:
-					cerr << "Invalid argument" << argv[1] << '';
-			}
+				cerr << "Invalid argument" << argv[1] << '';
+		}
 		++argv;
 		--argc;
 	}
