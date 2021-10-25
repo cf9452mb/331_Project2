@@ -85,6 +85,7 @@ int main (int argc, char* argv[]) {
     //Calls in Unpack function from the DHbuffer to unpack data object.
     DHbuffer.Unpack(data);
     
+    //Creates map container
     map< int, int > m;
     
     fin.seekg(data.getHeadersize());
@@ -93,8 +94,10 @@ int main (int argc, char* argv[]) {
     
     while (LI.Read(fin)) {
            
+        //Calls zipCode class and declares record as a value
         zipCode record;
         
+        //Calls in Unpack from LI to unpack record object.
         LI.Unpack(record);
                 
         m.insert(pair<int,int>(record.getZip(), position));
