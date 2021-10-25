@@ -6,32 +6,24 @@
 */
 //*************************************************************
 
-#include "DHbuffer.h"
-int main(int argc, const char* argv[])
+#include <iostream>
+#include <stdlib.h>
+
+int main(int argc, char* argv[])
 {
-	// Retrieve argv
-	// The first argv is a.out
-	// The second argv is the file name
-	string filename = argv[1];
-	
-	// Initialize file name & header
-	convert(filename);
-	LengthIndicatedFile<Location> aFile(filename);
-	// Retrieve flags
-	for (int i = 2; i < argc; i++)
-	{
-		if (argv[i][0] == '-')
-		{
-			
-      
-      
-      
-      
-		}
-		else
-		{
-			cout << "Invalid argument, exit..." << endl;
-			return 0;
-		}
+
+	string filename = argv[0];
+  	vector<int> zipcodes;
+	int number;
+        while ((argc > 1) && (argv[1][0] == '-')) {
+			switch (argv [1] [1]) {
+				case 'Z':
+					number =  atoi(argv[1][2]);
+            		zipcodes.push_back(number);
+    			default:
+					cerr << "Invalid argument" << argv[1] << '';
+			}
+		++argv;
+		--argc;
 	}
 }
