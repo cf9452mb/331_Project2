@@ -151,7 +151,14 @@ void setFields(vector<string> tokens, vector<string> header, zipCode& record){
     }
 }
 
-//Parses the header string and puts each field into a vector
+/**
+*Parsess the header string and puts each field into a vector
+*
+* @param
+* @return
+* @pre
+* @post
+*/
 void parseHeader(vector<string>& v, string s){
     
     stringstream check1(s);
