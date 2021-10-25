@@ -43,7 +43,7 @@ dhObject::dhObject()
 }
     
 //
-// accessor for fileversion
+// Accessor for fileversion
 //
 // @param None
 // @return This function returns the version of the file structure type
@@ -54,7 +54,7 @@ const int dhObject::getFileversion(){
 }
 
 //
-//  accessor for headersize
+//  Accessor for headersize
 //
 // @param None
 // @return This function returns the header record size
@@ -65,7 +65,7 @@ const int dhObject::getHeadersize(){
 }
 
 //
-// accessor for recordcount
+// Accessor for recordcount
 //
 // @param None
 // @return This function returns the record count
@@ -76,7 +76,7 @@ const int dhObject::getRecordcount(){
 }
 
 //
-// accessor for fieldcount
+// Accessor for fieldcount
 //
 // @param None
 // @return This function returns the count of fields per record
@@ -87,7 +87,7 @@ const int dhObject::getFieldcount(){
 }
 
 //
-// accessor for primekey
+// Accessor for primekey
 //
 // @param None
 // @return This function returns the ordinal position of primary key
@@ -98,7 +98,7 @@ const int dhObject::getPrimekey(){
 }
 
 //
-// accessor for filetype
+// Accessor for filetype
 //
 // @param None
 // @return This function returns the file structure type
@@ -109,7 +109,7 @@ const int dhObject::getPrimekey(){
  }
  
 //
-// accessor for sizeformat
+// Accessor for sizeformat
 //
 // @param None
 // @return This function returns the size format type (ASCII or binary)
@@ -120,7 +120,7 @@ const std::string dhObject::getSizeformat(){
 }
     
 //
-// accessor for indexfile
+// Accessor for indexfile
 //
 // @param None
 // @return This function returns the index file name
@@ -131,7 +131,7 @@ const std::string dhObject::getIndexfile(){
 }
 
 //
-// accessor for fieldname vector
+// Accessor for fieldname vector
 //
 // @param None
 // @return This function returns the vector containing field names
