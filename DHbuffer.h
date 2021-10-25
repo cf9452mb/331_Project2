@@ -25,11 +25,11 @@ class DataHeaderBuffer
 {   public:
 
     /**
+    * Default constructor
     *
-    *
-    * @param
-    * @return
-    * @pre
+    * @param None
+    * @return None
+    * @pre None
     * @post
     */
     DataHeaderBuffer();
