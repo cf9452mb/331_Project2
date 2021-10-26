@@ -72,11 +72,11 @@ int main(int argc, char* argv[])
 //***********************************************************************************************************
 
 /**
+* Map is created as a container and is used by the function searchContainer to see if the integers are in the map. 
 *
-*
-* @param
+* @param The parameters we will be using is a string called dataFile
 * @return
-* @pre
+* @pre None 
 * @post
 */
 map< int, int > createContainer(string dataFile){
@@ -126,12 +126,12 @@ map< int, int > createContainer(string dataFile){
 }
 
 /**
+* This is the function used to search through the map and sees if the integers are on the map. 
 *
-*
-* @param
-* @return
-* @pre
-* @post
+* @param The parameters we will be using for this function is the map and a vector defined as v
+* @return 
+* @pre None
+* @post 
 */
 void searchContainer(map< int, int > m, vector<int> v){
     
