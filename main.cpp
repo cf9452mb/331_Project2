@@ -69,9 +69,10 @@ int main(int argc, char* argv[])
     }
     
     
-    
+    //Calls map container
     map< int, int > m = createContainer(dataFile);
     
+    //Calls function used to search through map
     searchContainer(m, zipcodes);
     
     finIndex.close();
