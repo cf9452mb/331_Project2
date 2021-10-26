@@ -81,10 +81,10 @@ int main(int argc, char* argv[])
 */
 map< int, int > createContainer(string dataFile){
     
-    DataHeaderBuffer DH;
+    DataHeaderBuffer DH;        //make use of the functions from the DataHeaderBuffer class
     
-    dhObject data;
-    indexObject index;
+    dhObject data;              //make use of the functions from the dhObject class
+    indexObject index;          //make use of the functions from the indexObject class
     
     map< int, int > m;
         
@@ -111,7 +111,7 @@ map< int, int > createContainer(string dataFile){
     
     string line;
     
-    while (getline(finIndex, line)) {
+    while (getline(finIndex, line)) {               //while there are still indexes found, add the indexes into the map
         
         string delim = ",";
         string key = line.substr(0, line.find(delim));
@@ -142,7 +142,7 @@ void searchContainer(map< int, int > m, vector<int> v){
     
     for (int zip : v) {
         
-        if (m.count(zip) > 0){
+        if (m.count(zip) > 0){          //if the zip code is greater than 0, go through the map to find the specific zipcode
             zipCode record;
             
             map< int, int >::iterator it = m.find(zip);
