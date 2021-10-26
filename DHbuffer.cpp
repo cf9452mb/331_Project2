@@ -145,7 +145,7 @@ int DataHeaderBuffer::readDataHeader(std::ifstream& file){
     file.seekg(0, std::ios::beg);
     std::string line;
     int count = 0;
-    while(count < 7){
+    while(count < 7){       //When count is lesser than 7, increment the count and push back the line
         getline(file, line);
         headerinfo.push_back(parseLine(line));
         count++;
