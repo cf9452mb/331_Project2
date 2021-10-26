@@ -122,7 +122,7 @@ class DataHeaderBuffer
     /**
     *The contents of Fieldpairs are stored into Pairs.
     *
-    * @param "pairs" have to be already indicated
+    * @param vector "pairs" have to be already indicated
     * @return This returns the contents of fieldpairs in pairs
     * @pre "pairs" have to be already indicated
     * @post The contents of fieldpairs will be stored in pairs
