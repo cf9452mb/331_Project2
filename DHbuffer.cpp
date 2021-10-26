@@ -1,9 +1,10 @@
 //--------------------------------------------------
 // DHbuffer.cpp
 // Class for a buffer which reads, writes, packs and unpacks data
-// Author: Anuja Modi, Jordan Hebler
+// Author: Anuja Modi, Jordan Hebler, Myint Aung
 //--------------------------------------------------
-// This implementation file includes a class DataHeaderBuffer
+// This implementation file includes a class DataHeaderBuffer which includes functions
+// that will read, write, pack and unpack data
 //--------------------------------------------------
 #include <vector>
 #include <string>
@@ -20,28 +21,29 @@ std::vector<field> parseFields(std::string line);
  *
  * @author Anuja Modi
  * @author Jordan Hebler
+ * @author Myint Aung
  */
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+// Default constructor
+//
+// @param None
+// @return None
+// @pre None
+// @post This is a default constructor that sets default values.
+//
 DataHeaderBuffer::DataHeaderBuffer(){
     //Empty for now
 }
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+// This packs the fields vectors with the data members from a dhObject record.
+//
+// @param dhObject The object to "pack" the buffer with
+// @return This returns 1 if successful
+// @pre The data members for the object passed in has to be set
+// @post The field members now contains the data members of the dhObject record.
+//
 int DataHeaderBuffer::Pack(dhObject& object){
     
     this->Clear();
@@ -60,14 +62,14 @@ int DataHeaderBuffer::Pack(dhObject& object){
     
 }
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+// This packs the fields vectors with the data members from a indexObject record.
+//
+// @param indexObject The object to "pack" the buffer with
+// @return This returns 1 if successful
+// @pre The data members for the object passed in has to be set
+// @post The field members now contains the data members of the indexObject record.
+//
 int DataHeaderBuffer::Pack(indexObject& object){
     
     this->Clear();
@@ -83,14 +85,14 @@ int DataHeaderBuffer::Pack(indexObject& object){
     return 1;
 }
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+// This "unpacks" the buffer into a dhObject record
+//
+// @param dhObject The object to "unpack" the buffer with
+// @return This returns 1 if successful
+// @pre The header info vector needs to be set previously from Read()
+// @post The record passed in now contains all data members from buffer
+//
 int DataHeaderBuffer::Unpack(dhObject& object){
     object.setFiletype(headerinfo[0]);
     object.setFileversion(stoi(headerinfo[1]));
@@ -108,14 +110,14 @@ int DataHeaderBuffer::Unpack(dhObject& object){
     
 }
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+// This "unpacks" the buffer into a indexObject record
+//
+// @param indexObject The object to "unpack" the buffer with
+// @return This returns 1 if successful
+// @pre The header info vector needs to be set previously from Read()
+// @post The record passed in now contains all data members from buffer
+//
 int DataHeaderBuffer::Unpack(indexObject& object){
     object.setPkey(headerinfo[0]);
     object.setKeytype(headerinfo[1]);
@@ -128,14 +130,14 @@ int DataHeaderBuffer::Unpack(indexObject& object){
     return 1;
 }
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+// This reads the lines from the Data Header
+//
+// @param The file stream where the record is to be read from
+// @return This returns 1 on success
+// @pre The strings has to be indicated in the data header files
+// @post The size and contents of the Data Header are set.
+//
 int DataHeaderBuffer::readDataHeader(std::ifstream& file){
     
     this->Clear();
@@ -159,14 +161,14 @@ int DataHeaderBuffer::readDataHeader(std::ifstream& file){
     
 }
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+//This reads the lines from the Index Header
+//
+// @param The file stream where the record is to be read from
+// @return This returns 1 on success
+// @pre The strings has to be indicated in the index header files
+// @post The size and contents of the index header are set.
+//
 int DataHeaderBuffer::readIndexHeader(std::ifstream& file){
     
     this->Clear();
@@ -184,14 +186,14 @@ int DataHeaderBuffer::readIndexHeader(std::ifstream& file){
     
 }
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+//This size and contents of the data header are written into the file
+//
+// @param The file stream where the record is to be written to
+// @return This returns 1 on success
+// @pre The size and field members must be indicated by Pack(dhObject)
+// @post The record is written to the file with contents of the Data Header
+//
 int DataHeaderBuffer::writeDataHeader(std::fstream& file){
     
     file.seekp(0, std::ios::beg);
@@ -212,14 +214,14 @@ int DataHeaderBuffer::writeDataHeader(std::fstream& file){
     return 1;
 }
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+//This size and contents of the data header are written into the file
+//
+// @param The file stream where the record is to be written to
+// @return This returns 1 on success
+// @pre The size and field members must be indicated by Pack(indexObject)
+// @post The record is written to the file with contents of the Index Object
+//
 int DataHeaderBuffer::writeIndexHeader(std::fstream& file){
     
     file.seekp(0, std::ios::beg);
@@ -235,26 +237,26 @@ int DataHeaderBuffer::writeIndexHeader(std::fstream& file){
     
 }
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+//The contents of Fieldpairs are stored into Pairs.
+//
+// @param "pairs" have to be already indicated
+// @return This returns the contents of fieldpairs in pairs
+// @pre "pairs" have to be already indicated
+// @post The contents of fieldpairs will be stored in pairs
+//
 void DataHeaderBuffer::setFieldpairs(std::vector<field> pairs){
     this->fieldpairs = pairs;
 }
 
-/**
-*
-*
-* @param
-* @return
-* @pre
-* @post
-*/
+//
+//This function clears the data
+//
+// @param None
+// @return None
+// @pre None
+// @post This functino clears the data
+//
 void DataHeaderBuffer::Clear(){
     this->headerinfo.clear();
     this->fieldpairs.clear();
