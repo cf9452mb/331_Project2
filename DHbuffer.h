@@ -135,7 +135,7 @@ class DataHeaderBuffer
     * @param None
     * @return None
     * @pre None
-    * @post This functino clears the data
+    * @post This function clears the data
     */
     void Clear();
 
