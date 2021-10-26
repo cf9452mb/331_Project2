@@ -1,7 +1,7 @@
 //--------------------------------------------------
 // main.cpp
 // This main.cpp utilizes the functions from the other classes to go through the indexes and find the specific zipcodes.
-// Author: Anuja Modi, Jordan Hebler
+// Author: Anuja Modi, Jordan Hebler, Justine Canlas, Myint Aung
 //--------------------------------------------------
 // This main.cpp makes use of all the other classes to go through all the indexes and find the specific zipcodes.
 //--------------------------------------------------
@@ -12,6 +12,8 @@
  *
  * @author Anuja Modi
  * @author Jordan Hebler
+ * @author Justine Canlas
+ * @author Myint Aung
  */
 
 #include <iostream>
