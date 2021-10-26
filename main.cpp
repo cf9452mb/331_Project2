@@ -72,7 +72,9 @@ int main(int argc, char* argv[])
 //***********************************************************************************************************
 
 /**
-* Map is created as a container and is used by the function searchContainer to see if the integers are in the map. 
+* Map is created as a container and is used by the function searchContainer to see if the integers are in the map. This function makes use of the functions
+* from DataHeaderBuffer to read the header files and unpack the "data" from the dhObject class while also reading the index files and unpacking the
+* "index" from the indexObject. These functions will be used to store the data in the map with all of the indexex and contents.
 *
 * @param The parameters we will be using is a string called dataFile
 * @return This returns a map with all of the indexes and contents from indexobject and datafile.
