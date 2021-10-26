@@ -1,3 +1,11 @@
+//--------------------------------------------------
+// main.cpp
+// This main.cpp utilizes the functions from the other classes to go through the indexes and find the specific zipcodes.
+// Author: Anuja Modi, Jordan Hebler
+//--------------------------------------------------
+// This main.cpp makes use of all the other classes to go through all the indexes and find the specific zipcodes.
+//--------------------------------------------------
+
 /**
  * @file main.cpp
  * @brief This is the main program that reads the flags from the user on the command line.
@@ -28,7 +36,7 @@ void searchContainer(map< int, int > m, vector<int> v);
 
 int main(int argc, char* argv[])
 {
-    if(argc < 2){
+    if(argc < 2){               
         cerr << "Invalid number of arguments!" << endl;
         cerr << "Format = ./test data.txt [-Z<ZipCode>]" << endl;
         exit(1);
