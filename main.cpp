@@ -36,7 +36,7 @@ void searchContainer(map< int, int > m, vector<int> v);
 
 int main(int argc, char* argv[])
 {
-    if(argc < 2){               
+    if(argc < 2){         //Check to make sure if an argument is given for the file or not
         cerr << "Invalid number of arguments!" << endl;
         cerr << "Format = ./test data.txt [-Z<ZipCode>]" << endl;
         exit(1);
