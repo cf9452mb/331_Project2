@@ -72,11 +72,9 @@ int main(int argc, char* argv[])
 //***********************************************************************************************************
 
 /**
-* Map is created as a container and is used by the function searchContainer to see if the integers are in the map. This function makes use of the functions
-* from DataHeaderBuffer to read the header files and unpack the "data" from the dhObject class while also reading the index files and unpacking the
-* "index" from the indexObject. These functions will be used to store the data in the map with all of the indexex and contents.
+* It creates a map container from the given data files and its corresponding index files.
 *
-* @param The parameters we will be using is a string called dataFile
+* @param string The parameters we will be using is a string called dataFile
 * @return This returns a map with all of the indexes and contents from indexobject and datafile.
 * @pre None 
 * @post None
@@ -130,7 +128,7 @@ map< int, int > createContainer(string dataFile){
 /**
 * This is the function used to search through the map and sees if the integers are on the map. 
 *
-* @param The parameters we will be using for this function is the map and a vector defined as v
+* @param map<int, int> vector<int> The parameters we will be using for this function is the map and a vector defined as v
 * @return This returns if a particular zip code is found in the container or not
 * @pre None
 * @post None
