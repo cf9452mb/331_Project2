@@ -34,21 +34,24 @@ int main(int argc, char* argv[])
         exit(1);
     }
     
+    
     string filename = argv[0];
     string dataFile = argv[1];
     
     vector<int> zipcodes;
     int number;
     
+    //this while loop is looping through the command line
     while ((argc > 2) && (argv[2][0] == '-')) {
         
         switch (argv [2] [1]) {
-                
+            //We will be searching for Z     
             case 'Z':
                 number =  atoi(&argv[2][2]);
                 zipcodes.push_back(number);
                 break;
                 
+            //Default arguement 
             default:
                 cerr << "Invalid argument: " << argv[2] << "\n";
             }
@@ -81,10 +84,10 @@ int main(int argc, char* argv[])
 */
 map< int, int > createContainer(string dataFile){
     
-    DataHeaderBuffer DH;        //make use of the functions from the DataHeaderBuffer class
+    DataHeaderBuffer DH;
     
-    dhObject data;              //make use of the functions from the dhObject class
-    indexObject index;          //make use of the functions from the indexObject class
+    dhObject data;
+    indexObject index;
     
     map< int, int > m;
         
@@ -111,7 +114,7 @@ map< int, int > createContainer(string dataFile){
     
     string line;
     
-    while (getline(finIndex, line)) {               //while there are still indexes found, add the indexes into the map
+    while (getline(finIndex, line)) {
         
         string delim = ",";
         string key = line.substr(0, line.find(delim));
@@ -142,7 +145,7 @@ void searchContainer(map< int, int > m, vector<int> v){
     
     for (int zip : v) {
         
-        if (m.count(zip) > 0){          //if the zip code is greater than 0, go through the map to find the specific zipcode
+        if (m.count(zip) > 0){
             zipCode record;
             
             map< int, int >::iterator it = m.find(zip);
