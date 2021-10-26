@@ -30,9 +30,10 @@
 
 using namespace std;
 
-
+// File streams for the data and index files
 ifstream finIndex, finData;
 
+//Local functions used to create a map container and search through it for a given zip code
 map< int, int > createContainer(string dataFile);
 void searchContainer(map< int, int > m, vector<int> v);
 
@@ -48,6 +49,7 @@ int main(int argc, char* argv[])
     string filename = argv[0];
     string dataFile = argv[1];
     
+    //Vector of integers to hold the valid zip codes from command line
     vector<int> zipcodes;
     int number;
     
@@ -161,7 +163,7 @@ void searchContainer(map< int, int > m, vector<int> v){
     
     for (int zip : v) {
         
-        if (m.count(zip) > 0){                      //if the zip code is greater than 0, go through the map to find the specific zipcode
+        if (m.count(zip) > 0){                      //if the zip code is found in the map, extract that record from the data file and output it
             zipCode record;
             
             map< int, int >::iterator it = m.find(zip);
