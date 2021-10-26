@@ -120,8 +120,10 @@ map< int, int > createContainer(string dataFile){
         exit(2);
     }
     
-    
+    //Calls the readIndexHeader function from the DataHeaderBuffer
     DH.readIndexHeader(finIndex);
+    
+    //Calls Unpack function from the DataHeaderBuffer
     DH.Unpack(index);
         
     finIndex.seekg(index.getHeadersize());
