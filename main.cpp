@@ -75,9 +75,9 @@ int main(int argc, char* argv[])
 * Map is created as a container and is used by the function searchContainer to see if the integers are in the map. 
 *
 * @param The parameters we will be using is a string called dataFile
-* @return
+* @return This returns a map with all of the indexes and contents from indexobject and datafile.
 * @pre None 
-* @post
+* @post None
 */
 map< int, int > createContainer(string dataFile){
     
@@ -129,9 +129,9 @@ map< int, int > createContainer(string dataFile){
 * This is the function used to search through the map and sees if the integers are on the map. 
 *
 * @param The parameters we will be using for this function is the map and a vector defined as v
-* @return 
+* @return This returns if a particular zip code is found in the container or not
 * @pre None
-* @post 
+* @post None
 */
 void searchContainer(map< int, int > m, vector<int> v){
     
