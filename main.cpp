@@ -106,7 +106,10 @@ map< int, int > createContainer(string dataFile){
         exit(1);
     }
     
+    //Calls readDataHeader function from the DataHeaderBuffer
     DH.readDataHeader(finData);
+    
+    //Calls the Unpack function from the DataHeaderBuffer
     DH.Unpack(data);
     
     finIndex.open(data.getIndexfile());
