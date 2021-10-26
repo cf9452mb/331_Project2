@@ -245,6 +245,7 @@ int main (int argc, char* argv[]) {
     
     map<int,int>::iterator itr1;
     
+    //For loop to output
     for (itr1 = m.begin(); itr1 != m.end(); ++itr1) {
         
         fout << itr1->first << ',' << itr1->second << "\n";
